@@ -30,7 +30,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           source: './wordpress.zip, ./wpcontent.zip'
-          target: ${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}
+          target: ${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}
 
       - name: Enable Maintenance Mode
         uses: appleboy/scp-action@master
@@ -40,7 +40,7 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           source: '.maintenance'
-          target: ${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}
+          target: ${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}
 
       - name: Update WordPress Core
         uses: appleboy/ssh-action@v1.0.3
@@ -50,11 +50,11 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            find "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}" -type f -name "*.php" ! -name "wp-config.php" -delete
-            rm -r "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wp-admin/" "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wp-includes/"
-            unzip -o "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wordpress.zip" -d "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/"
-            mv "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wordpress"/* "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/"
-            rm -r "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wordpress"
+            find "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}" -type f -name "*.php" ! -name "wp-config.php" -delete
+            rm -r "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wp-admin/" "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wp-includes/"
+            unzip -o "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wordpress.zip" -d "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/"
+            mv "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wordpress"/* "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/"
+            rm -r "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wordpress"
 
       - name: Update Plugins and Theme
         uses: appleboy/ssh-action@v1.0.3
@@ -64,8 +64,8 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            rm -rf "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wp-content/plugins" "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wp-content/mu-plugins" "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wp-content/themes"
-            unzip -o "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wpcontent.zip" -d "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wp-content/"
+            rm -rf "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wp-content/plugins" "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wp-content/mu-plugins" "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wp-content/themes"
+            unzip -o "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wpcontent.zip" -d "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wp-content/"
 
       - name: Disable Maintenance Mode and Remove zips
         uses: appleboy/ssh-action@v1.0.3
@@ -75,6 +75,6 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           port: ${{ secrets.SSH_PORT }}
           script: |
-            rm -f "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/.maintenance" 
-            rm -f "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wpcontent.zip"
-            rm -f "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wordpress.zip"
+            rm -f "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/.maintenance" 
+            rm -f "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wpcontent.zip"
+            rm -f "${{ github.event_name == 'push' && '/home/m/mikhail700/checklist.md-art.ru/public_html/dev.gamestore.ru' || '/home/m/mikhail700/checklist.md-art.ru/public_html/prod.gamestore.ru' }}/wordpress.zip"
