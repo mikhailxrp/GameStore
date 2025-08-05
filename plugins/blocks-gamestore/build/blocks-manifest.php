@@ -54,14 +54,52 @@ return array(
 		'name' => 'blocks-gamestore/block-hero',
 		'version' => '0.1.0',
 		'title' => 'Hero Block',
-		'category' => 'widgets',
-		'icon' => 'smiley',
-		'description' => 'Example block scaffolded with Create Block tool.',
+		'category' => 'gamestore',
+		'icon' => 'category',
+		'description' => 'Main block on the home page.',
 		'example' => array(
 			
 		),
 		'supports' => array(
 			'html' => false
+		),
+		'attributes' => array(
+			'title' => array(
+				'type' => 'string',
+				'source' => 'html',
+				'selector' => '.hero-title'
+			),
+			'description' => array(
+				'type' => 'string',
+				'source' => 'html',
+				'selector' => '.hero-description'
+			),
+			'link' => array(
+				'type' => 'string',
+				'source' => 'attribute',
+				'attribute' => 'href',
+				'selector' => 'a'
+			),
+			'linkAnchor' => array(
+				'type' => 'string',
+				'source' => 'html',
+				'selector' => 'a'
+			),
+			'mediaUrl' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'isVideo' => array(
+				'type' => 'boolean',
+				'default' => true
+			),
+			'slides' => array(
+				'type' => 'array',
+				'selector' => '.hero-slides',
+				'default' => array(
+					
+				)
+			)
 		),
 		'textdomain' => 'blocks-gamestore',
 		'editorScript' => 'file:./index.js',

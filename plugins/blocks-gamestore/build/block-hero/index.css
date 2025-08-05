@@ -1,13 +1,111 @@
 /*!***************************************************************************************************************************************************************************************************************************************************!*\
   !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/block-hero/editor.scss ***!
   \***************************************************************************************************************************************************************************************************************************************************/
-/**
- * The following styles get applied inside the editor only.
- *
- * Replace them with your own styles or remove the file completely.
- */
-.wp-block-create-block-blocks-gamestore {
-  border: 1px dotted #f00;
+:root {
+  --white-contrast: #0a090a;
+  --text-secondary: rgba(14, 13, 15, 0.7);
+  --purple-main: #6f76c0;
+  --mask-gradient: linear-gradient(
+  	270deg,
+  	rgba(14, 13, 15, 0) 0%,
+  	#ececec 79.5%
+  );
+  --mask-gradient-second: linear-gradient(
+  	180deg,
+  	rgba(250, 250, 250, 0) 0%,
+  	#fafafa 100%
+  );
+  --accent-gradient: linear-gradient(90deg, #3dafe2 0%, #6f76c0 100%);
+}
+
+.hero-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  max-width: 268px;
+  height: auto;
+  padding: 25px 32px 25px 32px;
+  background: var(--accent-gradient);
+  color: #fff;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  line-height: 1;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+.hero-button.shadow {
+  box-shadow: 0px 16px 24px 0px rgba(61, 175, 226, 0.48);
+}
+.hero-button:hover {
+  color: #fff;
+  background: linear-gradient(90deg, #6f76c0 0%, #6f76c0 100%);
+}
+.hero-button:hover.shadow {
+  box-shadow: 0px 8px 12px -6px rgba(61, 175, 226, 0.48);
+}
+
+.slide-item-image p {
+  font-weight: bold;
+  margin-top: 24px;
+  margin-bottom: 5px;
+}
+
+.image-box {
+  margin-bottom: 5px;
+  padding: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #d1d1d1;
+}
+
+.hero-slider {
+  position: absolute;
+  width: 100%;
+  height: 150px;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--mask-gradient-second, linear-gradient(180deg, rgba(250, 250, 250, 0) 0%, #fafafa 100%));
+  z-index: 3;
+}
+.hero-slider .slider-container {
+  width: 100%;
+  max-width: 1540px;
+  margin-left: auto;
+  margin-right: auto;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+.hero-slider .slider-container .swiper-wrapper {
+  display: flex;
+}
+.hero-slider .slider-container .swiper-wrapper .slide-item {
+  margin-right: 100px;
+  max-width: -moz-fit-content;
+  max-width: fit-content;
+  margin-left: 0;
+}
+.hero-slider .slider-container .swiper-wrapper .slide-item img.light-logo {
+  display: none;
+}
+
+.wp-block-blocks-gamestore-block-hero .hero-content .hero-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  font-size: clamp(2.69rem, 2.34rem + 1.72vw, 4rem);
+  font-weight: 700;
+  line-height: 1.2;
+  font-style: normal;
+}
+
+.wp-block-blocks-gamestore-block-hero .hero-content .hero-description {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 /*# sourceMappingURL=index.css.map*/
