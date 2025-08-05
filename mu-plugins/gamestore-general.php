@@ -31,3 +31,21 @@
 
 //  хук к которому цепляемся для отключения виджетов
  add_action( 'wp_dashboard_setup', 'gamestore_remove_dashborad_widgets');
+
+//  Загрузка SVG
+function gamestore_mime_types($mimes) {
+  $mimes['svg'] = 'image/svg+xml';
+  return $mimes;
+}
+add_filter('upload_mimes', 'gamestore_mime_types');
+
+// Fix SVG display in media library
+function gamestore_fix_svg() {
+  echo '<style>
+      .attachment-266x266, .thumbnail img {
+          width: 100% !important;
+          height: auto !important;
+      }
+  </style>';
+}
+add_action('admin_head', 'gamestore_fix_svg');
