@@ -47,3 +47,10 @@ function gamestore_google_fonts_script(){
 }
 
 add_action( 'wp_enqueue_scripts', 'gamestore_google_fonts_script' );
+
+add_filter('load_textdomain_mofile', function($mofile, $domain) {
+	if (in_array($domain, ['woocommerce', 'your-plugin-slug'])) {
+		return false; // Не загружать перевод
+	}
+	return $mofile;
+}, 10, 2);
