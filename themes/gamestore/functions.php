@@ -48,9 +48,15 @@ function gamestore_google_fonts_script(){
 
 add_action( 'wp_enqueue_scripts', 'gamestore_google_fonts_script' );
 
+// отключение переводов
 add_filter('load_textdomain_mofile', function($mofile, $domain) {
-	if (in_array($domain, ['woocommerce', 'your-plugin-slug'])) {
-		return false; // Не загружать перевод
-	}
+	if ($domain === 'woocommerce') return false;
 	return $mofile;
 }, 10, 2);
+
+// Отключение расширений
+add_filter( 'woocommerce_disable_marketplace_suggestions', '__return_true' ); // Убирает рекламу расширений
+add_filter( 'woocommerce_admin_features', '__return_empty_array' ); // Полностью отключает аналитику
+
+// REST-API отключение
+add_filter( 'woocommerce_rest_api_enabled', '__return_false' );
